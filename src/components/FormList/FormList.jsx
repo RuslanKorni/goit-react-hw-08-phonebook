@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { nanoid } from "@reduxjs/toolkit";
-import { fetchContacts, addContact } from "../../redux/operations";
+import { fetchContacts, addContact } from "../../redux/contacts/operations";
 import {useState} from 'react';
 import { Form, Label, Input, Button, Span } from './FormList.styled';
 import { toast } from 'react-toastify';
 import { notifyOptions } from '../notifyOptions/notifyOptions';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectVisibleContacts } from '../../redux/selectors';
+import { selectVisibleContacts } from '../../redux/contacts/selectors';
 
 const FormList = () => {
 const [name, setName] = useState('');
