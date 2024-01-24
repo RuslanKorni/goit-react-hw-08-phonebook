@@ -1,22 +1,57 @@
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import FormList from './FormList/FormList';
-import GlobalTitle from './Layout/Title';
-import ContactList from './ContatList/ContactList';
-import Filter from './Filter/Filter';
+import { useEffect, lazy } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import { useAuth } from '../hooks';
+import { refreshUser } from '../redux/auth/auth-operations';
+import { Layout } from 'components/Layout/Layout';
+import { PrivateRoute } from './PrivateRoute';
+import { RestrictedRoute } from './RestrictedRoute';
 
 
-const App = () => {
+const HomePage = lazy(() => import('../pages/Home/Home'));
+const RegisterPage = lazy(() => import('../pages/Register'));
+const LoginPage = lazy(() => import('../pages/Login'));
+const Contacts = lazy(() => import('../pages/Contacts'));
+
+export const App = () => {
+
+  // return isRefreshing ? (
+  //   <b>Refreshing user...</b>
+  // ) :
+
   return (
-    <div>
-      <GlobalTitle title="Phonebook" />
-      <FormList />
-      <GlobalTitle title="Contacts" />
-      <Filter />
-      <ContactList />
-      <ToastContainer />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                redirectTo="/login"
+                component={<RegisterPage />}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<LoginPage />}
+              />
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute redirectTo="/login" component={<Contacts />} />
+            }
+          />
+        </Route>
+        <Route path="*" element={<HomePage />} />
+      </Routes>
+    </>
   );
 };
-
-export default App;
