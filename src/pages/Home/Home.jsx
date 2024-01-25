@@ -5,7 +5,7 @@ export default function Home() {
     <Container>
       <Title>Welcome to Phonebook</Title>
       <Link to="/login" title="Try it now!">
-        Try it now!
+        Add a contact now!
       </Link>
     </Container>
   );

@@ -33,6 +33,7 @@ export const Button = styled.button`
   gap: 10px;
   color: #ffff;
   padding: 5px 10px 5px;
+  cursor: pointer;
 
   background: rgba(0, 0, 0, 0.3);
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
