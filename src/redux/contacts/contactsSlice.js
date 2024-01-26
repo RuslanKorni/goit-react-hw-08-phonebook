@@ -28,15 +28,17 @@ const contactsSlice = createSlice({
       .addCase(addContact.rejected, handleRejected)
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.error = null;
-        const index = state.items.findIndex(
-          contact => contact.id === action.payload
-        );
-        state.items.splice(index, 1);
+        console.log(action.payload);
+        state.items = state.items.filter(item => item.id !== action.payload.id);
+
+        //! Цей код працює не коректно
+        // const index = state.items.findIndex(
+        //   contact => contact.id === action.payload
+        // );
+        // state.items.splice(index, 1);
       })
       .addCase(deleteContact.rejected, handleRejected);
   },
 });
 
 export const contactsReducer = contactsSlice.reducer;
-
-

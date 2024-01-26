@@ -15,10 +15,6 @@ const [number, setNumber] = useState('');
 const contacts = useSelector(selectVisibleContacts);
 const dispatch = useDispatch();
 
-useEffect(() => {
-  dispatch(fetchContacts());
-}, [dispatch]);
-
 const handleSubmit = event => {
   event.preventDefault();
 
