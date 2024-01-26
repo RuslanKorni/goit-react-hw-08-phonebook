@@ -1,6 +1,5 @@
-import { useEffect } from "react";
 import { nanoid } from "@reduxjs/toolkit";
-import { fetchContacts, addContact } from "../../redux/contacts/operations";
+import { addContact } from "../../redux/contacts/operations";
 import {useState} from 'react';
 import { Form, Label, Input, Button, Span } from './FormList.styled';
 import { toast } from 'react-toastify';
